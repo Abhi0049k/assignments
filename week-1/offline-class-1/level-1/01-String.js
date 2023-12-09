@@ -6,18 +6,22 @@
 // Run each function to see the output, play and learn by doing.
 
 // Length
+
+console.log('Length: To find the length of a string or an array');
 function getLength(str) {
   console.log("Original String:", str);
   console.log("Length:", str.length);
 }
 getLength("Hello World");
-
+console.log('------------------------');
 // indexOf
+console.log('indexOf: To find the index of a string');
 function findIndexOf(str, target) {
   console.log("Original String:", str);
   console.log("Index:", str.indexOf(target));
 }
 findIndexOf("Hello World", "World");
+console.log('------------------------');
 
 // lastIndexOf
 function findLastIndexOf(str, target) {
