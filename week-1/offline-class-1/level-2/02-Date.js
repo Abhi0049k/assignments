@@ -26,3 +26,12 @@ function dateMethods() {
 
 // Example Usage for Date Methods
 dateMethods();
+
+
+// const currentDate = new Date()
+
+// console.log(currentDate.getDate());
+
+// console.log(currentDate.getDay());
+
+// console.log(currentDate.getTime());
