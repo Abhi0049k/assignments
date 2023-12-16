@@ -21,10 +21,12 @@
 function sleep(milliseconds) {
     let curr = Date.now();
     let sum = 0;
-    console.log("sleep");
-    while(Date.now()-curr<seconds){
-        sum++;
-    }
+    return new Promise((resolve)=>{
+        while((Date.now()-curr)<milliseconds){
+            sum++;
+        }
+        resolve();
+    })
 }
 
 module.exports = sleep;

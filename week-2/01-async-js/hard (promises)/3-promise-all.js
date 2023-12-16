@@ -5,30 +5,32 @@
  */
 
 
-function waitOneSecond() {
+function waitOneSecond(t1) {
     return new Promise((resolve)=>{
-        setTimeout(resolve, 1000);
+        setTimeout(resolve, t1*1000);
     })
 }
 
-function waitTwoSecond() {
+function waitTwoSecond(t2) {
     return new Promise((resolve)=>{
-        setTimeout(resolve, 2000);
+        setTimeout(resolve, t2*1000);
     })
     
 }
 
-function waitThreeSecond() {
+function waitThreeSecond(t3) {
     return new Promise((resolve)=>{
-        setTimeout(resolve, 3000);
+        setTimeout(resolve, t3*1000);
     })
 }
 
-async function calculateTime() {
+async function calculateTime(t1, t2, t3) {
     let before = Date.now();
-    await Promise.all([waitOneSecond(), waitTwoSecond(), waitThreeSecond()]);
-    let after = Date.now();
-    console.log('Total Time Taken: ', (after-before)/1000)
+    return Promise.all([waitOneSecond(t1), waitTwoSecond(t2), waitThreeSecond(t3)]).then(()=>{
+        let after = Date.now();
+        return after - before;
+    })
+    // console.log('Total Time Taken: ', (after-before)/1000)
 }
 
 // calculateTime();
