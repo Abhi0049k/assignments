@@ -10,4 +10,5 @@ function wait(n) {
     })
 }
 
-wait(2).then(()=>console.log('resolved'));
+
+module.exports = wait;
