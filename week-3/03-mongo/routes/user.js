@@ -4,7 +4,7 @@ const userMiddleware = require("../middleware/user");
 const { User, Course, PurchasedCourse } = require("../db");
 
 // User Routes
-app.post('/signup', async(req, res) => {
+router.post('/signup', async(req, res) => {
     // Implement user signup logic
     try{
         const {username, password} = req.body;
@@ -16,7 +16,7 @@ app.post('/signup', async(req, res) => {
     }
 });
 
-app.get('/courses', async (req, res) => {
+router.get('/courses', async(req, res) => {
     // Implement listing all courses logic
     try{
         const courses = await Course.find();
@@ -26,7 +26,7 @@ app.get('/courses', async (req, res) => {
     }
 });
 
-app.post('/courses/:courseId', userMiddleware, async (req, res) => {
+router.post('/courses/:courseId', userMiddleware, async(req, res) => {
     // Implement course purchase logic
     try{
         const {courseId} = req.params;
@@ -40,7 +40,7 @@ app.post('/courses/:courseId', userMiddleware, async (req, res) => {
     }
 });
 
-app.get('/purchasedCourses', userMiddleware, async (req, res) => {
+router.get('/purchasedCourses', userMiddleware, async (req, res) => {
     // Implement fetching purchased courses logic
     try{
         const {username} = req.headers;
@@ -50,3 +50,5 @@ app.get('/purchasedCourses', userMiddleware, async (req, res) => {
         res.status(500).send({msg: "Something went wrong"});
     }
 });
+
+module.exports = router
