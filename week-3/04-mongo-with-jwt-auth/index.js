@@ -4,6 +4,9 @@ const app = express();
 const adminRouter = require("./routes/admin")
 const userRouter = require("./routes/user");
 
+export const ADMIN_JWT_SECRET = 'admin_jwt_secret';
+export const USER_JWT_SECRET = 'user_jwt_secret';
+
 // Middleware for parsing request bodies
 app.use(bodyParser.json());
 app.use("/admin", adminRouter)
