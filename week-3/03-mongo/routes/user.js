@@ -1,7 +1,7 @@
 const { Router } = require("express");
 const router = Router();
 const userMiddleware = require("../middleware/user");
-const { User, Course, PurchasedCourse } = require("../db");
+const { User, Course } = require("../db");
 
 // User Routes
 router.post('/signup', async(req, res) => {
@@ -32,8 +32,8 @@ router.post('/courses/:courseId', userMiddleware, async(req, res) => {
         const {courseId} = req.params;
         const {username} = req.headers;
         const course = await Course.findById(courseId);
-        const newPurchase = new PurchasedCourse({...course, ...username});
-        await newPurchase.save();
+        if(!course) return res.status(404).send({msg: "Course not found"});
+        await User.updateOne({username}, {"$push":{purchasedCourses: courseId}});
         res.status(201).send({msg: "Course purchased successfully"})
     }catch(err){
         res.status(500).send({msg: "Something went wrong"});
@@ -44,8 +44,13 @@ router.get('/purchasedCourses', userMiddleware, async (req, res) => {
     // Implement fetching purchased courses logic
     try{
         const {username} = req.headers;
-        const purchase = await PurchasedCourse.find({username});
-        res.status(200).send({purchasedCourses: purchase});
+        const purchase = await User.findOne({username});
+        const courses = await Course.find({
+            _id: {
+                "$in": purchase.purchasedCourses
+            }
+        })
+        res.status(200).send({purchasedCourses: courses});
     }catch(err){
         res.status(500).send({msg: "Something went wrong"});
     }

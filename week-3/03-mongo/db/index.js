@@ -13,7 +13,11 @@ const AdminSchema = new mongoose.Schema({
 const UserSchema = new mongoose.Schema({
     // Schema definition here
     username: String,
-    password: String
+    password: String,
+    purchasedCourses: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Course'
+    }]
 });
 
 const CourseSchema = new mongoose.Schema({
@@ -24,22 +28,12 @@ const CourseSchema = new mongoose.Schema({
     image: String
 });
 
-const purchasedCourses = new mongoose.Schema({
-    title: String,
-    description: String,
-    price: Number,
-    image: String,
-    username: String
-})
-
 const Admin = mongoose.model('Admin', AdminSchema);
 const User = mongoose.model('User', UserSchema);
 const Course = mongoose.model('Course', CourseSchema);
-const PurchasedCourse = mongoose.model('purchaseCourse', purchasedCourses);
 
 module.exports = {
     Admin,
     User,
-    Course,
-    PurchasedCourse
+    Course
 }
