@@ -7,12 +7,13 @@ const Assignment3 = () => {
         { name: 'Chocolates', value: 10 },
         { name: 'Chips', value: 20 },
         { name: 'Onion', value: 30 },
+        { name: 'Potato', value: 16 },
         { name: 'Tomato', value: 30 },
         // Add more items as needed
     ]);
 
     // Your code starts here
-    const totalValue = 0;
+    const totalValue = useMemo(()=> items.reduce((acc, el)=> acc+el.value, 0), [items]);
     // Your code ends here
     return (
         <div>
