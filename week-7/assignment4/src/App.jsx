@@ -35,6 +35,7 @@ function InputField() {
 
   return (
     <div style={{ height: '94vh', width: '98%', display: 'flex', flexDirection: 'column', alignItems: 'center', gap:'24px', margin: '14px' }}>
+      <h1>Para Generator</h1>
       <div style={{ display: 'flex' }}>
         <input style={{ border: '1px solid rgba(0,0,0,0.3)', borderRadius: '4px', width: '240px', height: '40px', padding: '0px 12px' }} placeholder='Enter Number of Words' type="text" value={count === 0 ? "" : count} onChange={handleChange} />
         <button style={{ border: '1px solid rgba(0,0,0,0.3)', borderRadius: '4px', height: '40px', padding: '0 12px' }} onClick={() => handleParaGenerate(count)}>Generate</button>
