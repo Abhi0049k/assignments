@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom React</title>
+</head>
+<body>
+    <div id="root"></div>
+    <script>
+        const reactEl = {
+            type: 'a',
+            props: {
+                href: 'www.google.com',
+                target: '_blank',
+                children: 'Click me to Visit Google'
+            }
+        }
+
+        function generatingHTML(el){
+            if(typeof el === 'sting') return el;
+
+            const {type, props} = el;
+            const children = props.children;
+
+            return `<${type} ${Object.keys(props).map(key => `${key}="${props[key]}"`).join(' ')}>${children}</${type}>`;
+        }
+
+        function customReactRender(el, id){
+            const container = document.querySelector(`#${id}`);
+            container.innerHTML = generatingHTML(el)
+        }
+
+        customReactRender(reactEl, 'root');
+
+    </script>
+</body>
+</html>
